@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Ways to Communicate Across Browser Tabs<a href="/">Back to home</a></h1>
+  <h2>LocalStorage Demo2</h2>
+  <script>
+  const data = {
+    msg: 'Hello, world!',
+    timestamp: Date.now(),
+    from: 'demo2'
+  };
+  window.localStorage.setItem('ls-msg', JSON.stringify(data));
+
+  const newData = Object.assign({}, data);
+  newData.timestamp = 2022;
+  window.localStorage.setItem('ls-msg', JSON.stringify(newData));
+  window.localStorage.setItem('ls-msg', JSON.stringify(newData));
+  </script>
+</body>
+</html>

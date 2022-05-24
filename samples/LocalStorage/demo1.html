@@ -8,12 +8,15 @@
 </head>
 <body>
   <h1>Ways to Communicate Across Browser Tabs<a href="/">Back to home</a></h1>
-  <h2>Service Worker</h2>
+  <h2>LocalStorage Demo1</h2>
   <script>
-    if ('serviceWorker' in navigator) {
-      // 发送消息
-      navigator.serviceWorker.controller.postMessage('Hello, world! There is demo2');
+  window.addEventListener('storage', function(event) {
+    if (event.key === 'ls-msg') {
+      const data = JSON.parse(event.newValue);
+      const text = `[recive][${data.timestamp}] ${data.msg} -- tab ${data.from}`;
+      console.log('[LocalStorage] recive message: ', text);
     }
+  });
   </script>
 </body>
 </html>
