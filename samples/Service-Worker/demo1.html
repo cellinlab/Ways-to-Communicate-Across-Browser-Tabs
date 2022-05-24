@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Ways to Communicate Across Browser Tabs</h1>
+  <h2>Service Worker</h2>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('../Service-Worker/sw.js').then(function(registration) {
+        console.log('Service Worker Registered');
+
+        // 监听消息
+        navigator.serviceWorker.addEventListener('message', function(event) {
+          console.log('[Service Worker] recive message: ', event.data);
+        });
+      }).catch(function(err) {
+        console.log('Service Worker Failed', err);
+      });
+    }
+  </script>
+</body>
+</html>
