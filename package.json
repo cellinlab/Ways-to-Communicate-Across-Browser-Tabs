@@ -1,0 +1,24 @@
+{
+  "name": "Ways-to-Communicate-Across-Browser-Tabs",
+  "version": "1.0.0",
+  "description": "Ways to Communicate Across Browser Tabs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cellinlab/Ways-to-Communicate-Across-Browser-Tabs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cellinlab/Ways-to-Communicate-Across-Browser-Tabs/issues"
+  },
+  "homepage": "https://github.com/cellinlab/Ways-to-Communicate-Across-Browser-Tabs#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
