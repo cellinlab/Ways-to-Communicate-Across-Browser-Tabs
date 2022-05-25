@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Ways to Communicate Across Browser Tabs</h1>
+  <h2>SharedWorker Demo2</h2>
+  <script>
+    // 启动一个 SharedWorker
+    const sharedWorker = new SharedWorker('../SharedWorker/shared.js', 'cellinlab');
+    // 发送消息
+    sharedWorker.port.postMessage({
+      type: 'post',
+      message: 'Hello from SharedWorker Demo2',
+      from: 'demo2',
+    });
+  </script>
+</body>
+</html>

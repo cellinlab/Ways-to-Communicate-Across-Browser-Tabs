@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Ways to Communicate Across Browser Tabs</h1>
+  <h2>SharedWorker Demo1</h2>
+  <script>
+    // 启动一个 SharedWorker
+    const sharedWorker = new SharedWorker('../SharedWorker/shared.js', 'cellinlab');
+
+    // 定时轮询
+    const timer = setInterval(() => {
+      // 发送消息，获取数据
+      sharedWorker.port.postMessage({
+        type: 'get',
+        message: 'Hello from SharedWorker Demo1',
+        from: 'demo1',
+      });
+    }, 1000);
+
+    // 接收消息
+    sharedWorker.port.addEventListener('message', (e) => {
+      const data = e.data;
+      const text = `[recive] ${data.message} -- From ${data.from}`;
+      console.log(text);
+    }, false);
+    sharedWorker.port.start();
+  </script>
+</body>
+</html>
