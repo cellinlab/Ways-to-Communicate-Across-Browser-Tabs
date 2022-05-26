@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Ways to Communicate Across Browser Tabs</h1>
+  <h2>iframe Demo1</h2>
+  <button id="btn-send-msg">send message to iframe</button>
+  <iframe src="../iframe/iframe.html" frameborder="0"></iframe>
+  <script>
+    // 通过 iframe 给其他页面发送信息
+    document.getElementById("btn-send-msg").addEventListener("click", function() {
+      window.frames[0].postMessage({
+        type: 'msg',
+        msg: "hello from demo1",
+        time: new Date().getTime()
+      }, "*");
+    });
+  </script>
+</body>
+</html>

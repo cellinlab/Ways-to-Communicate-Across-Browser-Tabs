@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Ways to Communicate Across Browser Tabs</h1>
+  <h2>iframe Demo2</h2>
+  <iframe src="../iframe/iframe.html" frameborder="0"></iframe>
+  <script>
+    // 监听来自 iframe 的信息
+    window.addEventListener('message', function(e) {
+      const {type, msg} = e.data;
+      if (type === 'msg') {
+        console.log('received message from iframe:', msg);
+      }
+    });
+  </script>
+</body>
+</html>

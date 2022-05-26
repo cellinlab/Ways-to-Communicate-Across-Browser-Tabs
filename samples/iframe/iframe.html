@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const bc = new BroadcastChannel('cellinlab-iframe-channel');
+
+    // 收到来自页面的信息后，在 iframe 之间发送信息
+    window.addEventListener('message', function(e) {
+      bc.postMessage(e.data);
+    });
+
+    // 收到来自 iframe 之间的信息后，将消息发送给页面
+    bc.onmessage = function(e) {
+      window.parent.postMessage(e.data, '*');
+    };
+  </script>
+</body>
+</html>
