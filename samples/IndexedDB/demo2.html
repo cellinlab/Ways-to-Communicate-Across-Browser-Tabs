@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../IndexedDB/util.js"></script>
+</head>
+<body>
+  <h1>Ways to Communicate Across Browser Tabs</h1>
+  <h2>IndexedDB Demo2</h2>
+  <script>
+    const STORE_NAME = 'my_store';
+    const DATA_KEY = 'my_key';
+
+    connectDB().then(db => {
+      saveData(db, STORE_NAME, DATA_KEY, null)
+        .then(db => {
+          setInterval(() => {
+           queryData(db, STORE_NAME, DATA_KEY)
+            .then(res =>{
+              if (!res || !res.data) {
+                return;
+              }
+              const data = res.data;
+              const text = `[recive] ${data.msg} -- tab ${data.from}`;
+              console.log(`[Sorage Demo2] recive message `, text);
+            });
+          }, 1000);
+        });
+      const data = {
+        msg: 'Hello, World!',
+        from: 'Demo2'
+      };
+      saveData(db, STORE_NAME, DATA_KEY, data);
+    });
+  </script>
+</body>
+</html>
