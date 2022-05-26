@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Ways to Communicate Across Browser Tabs</h1>
+  <h2>window.open & window.opener Demo2</h2>
+  <button id="btn-send-msg">send msg</button>
+  <script>
+    let childWins = [];
+    document.getElementById("btn-send-msg").addEventListener("click", () => {
+      if (window.opener && !window.opener.closed) {
+        window.opener.postMessage({
+          type: "message",
+          data: {
+            fromOpener: false,
+            msg: "hello from child"
+          }
+        }, "*");
+      }
+    });
+
+    // 接收来自父窗口或子窗口的消息，并发给非发送者的父窗口或子窗口
+    window.addEventListener('message', (e) => {
+      const { type, data } = e.data;
+      if (type == 'message') {
+        const text = `[recive] ${data.msg}`;
+        console.log(`[Window] recive message `, text);
+
+        // 避免向上回传
+        if (window.opener && !window.opener.closed && data.fromOpener) {
+          window.opener.postMessage(e.data, '*');
+        }
+
+        childWins = childWins.filter(win => !win.closed);
+        // 避免向下回传
+        if (childWins.length > 0 && !data.fromOpener) {
+          childWins.forEach(win => {
+            win.postMessage(e.data, '*');
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>
